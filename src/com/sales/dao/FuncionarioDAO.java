@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import com.sales.model.Funcionario;
 import com.sales.services.WebServiceCep;
+import com.sales.view.FormMenu;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +41,11 @@ public class FuncionarioDAO {
                 stmt.setString(2, obj.getRg());
                 stmt.setString(3, obj.getCpf());
                 stmt.setString(4, obj.getEmail());
-                
+
                 stmt.setString(5, obj.getSenha());
                 stmt.setString(6, obj.getCargo());
                 stmt.setString(7, obj.getNivel_acesso());
-                
+
                 stmt.setString(8, obj.getTelefone());
                 stmt.setString(9, obj.getCelular());
                 stmt.setString(10, obj.getCep());
@@ -290,6 +291,38 @@ public class FuncionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
             JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
             return null;
+        }
+    }
+
+    // Método de login
+    public void login(String email, String senha) {
+        try {
+
+            // 1° passo - SQL
+            String sql = "SELECT * FROM tb_funcionarios WHERE email = ? AND senha = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                // Usuário logou
+                JOptionPane.showMessageDialog(null, "Seja bem vindo ao sistema Sales");
+                
+                // Display menu
+                FormMenu menu = new FormMenu();
+                menu.usuariologado = rs.getString("nome");
+                menu.setVisible(true);
+
+            } else {
+                // Dados incorretos
+                JOptionPane.showMessageDialog(null, "Dados incorretos");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
 }
