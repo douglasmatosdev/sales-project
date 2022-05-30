@@ -4,8 +4,8 @@
  */
 package com.sales.view;
 
-import com.sales.dao.ClienteDAO;
-import com.sales.model.Cliente;
+import com.sales.dao.FuncionarioDAO;
+import com.sales.model.Funcionario;
 import com.sales.utils.Utils;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -37,7 +37,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabela = new javax.swing.JTabbedPane();
         painel_dados_pessoais = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
@@ -68,12 +68,18 @@ public class FormFuncionarios extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtcpf = new javax.swing.JFormattedTextField();
         btnconsulta = new javax.swing.JButton();
-        painel_consulta_clientes = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        txtsenha = new javax.swing.JPasswordField();
+        jLabel18 = new javax.swing.JLabel();
+        txtcargo = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        cbnivelacesso = new javax.swing.JComboBox<>();
+        painel_consulta_funcionarios = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtpesquisa = new javax.swing.JTextField();
         btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaClientes = new javax.swing.JTable();
+        tabelaFuncionarios = new javax.swing.JTable();
         btnnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
@@ -92,7 +98,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro de clientes");
+        jLabel1.setText("Cadastro de funcionários");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -279,6 +285,22 @@ public class FormFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel17.setText("Senha:");
+
+        txtsenha.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+
+        jLabel18.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel18.setText("Cargo:");
+
+        txtcargo.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+
+        jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel19.setText("Nível de Acesso:");
+
+        cbnivelacesso.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        cbnivelacesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Administrador" }));
+
         javax.swing.GroupLayout painel_dados_pessoaisLayout = new javax.swing.GroupLayout(painel_dados_pessoais);
         painel_dados_pessoais.setLayout(painel_dados_pessoaisLayout);
         painel_dados_pessoaisLayout.setHorizontalGroup(
@@ -317,17 +339,12 @@ public class FormFuncionarios extends javax.swing.JFrame {
                         .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel17))
                         .addGap(24, 24, 24)
-                        .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
                                 .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
-                                        .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtcidade))
                                     .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
                                         .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -337,22 +354,40 @@ public class FormFuncionarios extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
+                                        .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
+                                                .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel11))
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel19))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtcidade)
+                                            .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
+                                                .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cbnivelacesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtcomplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
-                                .addComponent(txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtsenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtrg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                                .addGap(456, 456, 456)
+                                .addComponent(jLabel18)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                                .addComponent(txtcargo)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         painel_dados_pessoaisLayout.setVerticalGroup(
             painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,16 +431,24 @@ public class FormFuncionarios extends javax.swing.JFrame {
                 .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15)
-                        .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)
+                        .addComponent(txtcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(cbnivelacesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Dados pessoais", painel_dados_pessoais);
+        tabela.addTab("Dados pessoais", painel_dados_pessoais);
 
-        painel_consulta_clientes.setBackground(new java.awt.Color(255, 255, 255));
+        painel_consulta_funcionarios.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel16.setText("Nome:");
@@ -433,33 +476,33 @@ public class FormFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "RG", "CPF", "Email", "Telefone", "Celular", "Cep", "Endereço", "Nº", "Complementp", "Bairo", "Cidade", "UF"
+                "Código", "Nome", "RG", "CPF", "Email", "Senha", "Cargo", "Nível Acesso", "Telefone", "Celular", "Cep", "Endereço", "Nº", "Complementp", "Bairo", "Cidade", "UF"
             }
         ));
-        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaClientesMouseClicked(evt);
+                tabelaFuncionariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaClientes);
+        jScrollPane1.setViewportView(tabelaFuncionarios);
 
-        javax.swing.GroupLayout painel_consulta_clientesLayout = new javax.swing.GroupLayout(painel_consulta_clientes);
-        painel_consulta_clientes.setLayout(painel_consulta_clientesLayout);
-        painel_consulta_clientesLayout.setHorizontalGroup(
-            painel_consulta_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel_consulta_clientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout painel_consulta_funcionariosLayout = new javax.swing.GroupLayout(painel_consulta_funcionarios);
+        painel_consulta_funcionarios.setLayout(painel_consulta_funcionariosLayout);
+        painel_consulta_funcionariosLayout.setHorizontalGroup(
+            painel_consulta_funcionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_consulta_funcionariosLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(painel_consulta_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_consulta_funcionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(painel_consulta_clientesLayout.createSequentialGroup()
+                    .addGroup(painel_consulta_funcionariosLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,11 +510,11 @@ public class FormFuncionarios extends javax.swing.JFrame {
                         .addComponent(btnpesquisar)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
-        painel_consulta_clientesLayout.setVerticalGroup(
-            painel_consulta_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel_consulta_clientesLayout.createSequentialGroup()
+        painel_consulta_funcionariosLayout.setVerticalGroup(
+            painel_consulta_funcionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_consulta_funcionariosLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(painel_consulta_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painel_consulta_funcionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnpesquisar))
@@ -480,7 +523,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Consulta de clientes", painel_consulta_clientes);
+        tabela.addTab("Consulta de funcionários", painel_consulta_funcionarios);
 
         btnnovo.setText("NOVO");
         btnnovo.addActionListener(new java.awt.event.ActionListener() {
@@ -515,7 +558,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabela)
             .addGroup(layout.createSequentialGroup()
                 .addGap(363, 363, 363)
                 .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -535,7 +578,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabela, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,13 +595,13 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
     // Método listar conteúdo da tabela
     public void listar() {
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> lista = dao.listarClientes();
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> lista = dao.listarFuncionarios();
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Cliente c : lista) {
+        for (Funcionario c : lista) {
 
             dados.addRow(new Object[]{
                 c.getId(),
@@ -566,6 +609,9 @@ public class FormFuncionarios extends javax.swing.JFrame {
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
+                c.getSenha(),
+                c.getCargo(),
+                c.getNivel_acesso(),
                 c.getTelefone(),
                 c.getCelular(),
                 c.getCep(),
@@ -632,13 +678,13 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> lista = dao.buscaClientePorNome(nome);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> lista = dao.buscaFuncionarioPorNome(nome);
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Cliente c : lista) {
+        for (Funcionario c : lista) {
 
             dados.addRow(new Object[]{
                 c.getId(),
@@ -646,6 +692,11 @@ public class FormFuncionarios extends javax.swing.JFrame {
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
+                
+                c.getSenha(),
+                c.getCargo(),
+                c.getNivel_acesso(),
+                
                 c.getTelefone(),
                 c.getCelular(),
                 c.getCep(),
@@ -667,11 +718,16 @@ public class FormFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         // btn salvar
 
-        Cliente obj = new Cliente();
+        Funcionario obj = new Funcionario();
         obj.setNome(txtnome.getText());
         obj.setRg(txtrg.getText());
         obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
+        
+        obj.setSenha(txtsenha.getText());
+        obj.setCargo(txtcargo.getText());
+        obj.setNivel_acesso(cbnivelacesso.getSelectedItem().toString());
+        
         obj.setTelefone(txttelefone.getText());
         obj.setCelular(txtcelular.getText());
         obj.setCep(txtcep.getText());
@@ -682,8 +738,8 @@ public class FormFuncionarios extends javax.swing.JFrame {
         obj.setCidade(txtcidade.getText());
         obj.setUf(cbuf.getSelectedItem().toString());
 
-        ClienteDAO dao = new ClienteDAO();
-        dao.cadastrarCliente(obj);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        dao.cadastrarFuncionario(obj);
 
         new Utils().limpaTela(painel_dados_pessoais);
     }//GEN-LAST:event_btnsalvarActionPerformed
@@ -692,12 +748,17 @@ public class FormFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Editar
 
-        Cliente obj = new Cliente();
+        Funcionario obj = new Funcionario();
 
         obj.setNome(txtnome.getText());
         obj.setRg(txtrg.getText());
         obj.setCpf(txtcpf.getText());
         obj.setEmail(txtemail.getText());
+        
+        obj.setSenha(txtsenha.getText());
+        obj.setCargo(txtcargo.getText());
+        obj.setNivel_acesso(cbnivelacesso.getSelectedItem().toString());
+        
         obj.setTelefone(txttelefone.getText());
         obj.setCelular(txtcelular.getText());
         obj.setCep(txtcep.getText());
@@ -710,9 +771,9 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClienteDAO dao = new ClienteDAO();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
-        dao.alterarCliente(obj);
+        dao.alterarFuncionario(obj);
 
         new Utils().limpaTela(painel_dados_pessoais);
     }//GEN-LAST:event_btneditarActionPerformed
@@ -721,13 +782,13 @@ public class FormFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Excluir
 
-        Cliente obj = new Cliente();
+        Funcionario obj = new Funcionario();
 
         obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-        ClienteDAO dao = new ClienteDAO();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
-        dao.excluirCliente(obj);
+        dao.excluirFuncionario(obj);
 
         new Utils().limpaTela(painel_dados_pessoais);
     }//GEN-LAST:event_btnexcluirActionPerformed
@@ -738,26 +799,31 @@ public class FormFuncionarios extends javax.swing.JFrame {
         listar();
     }//GEN-LAST:event_formWindowActivated
 
-    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+    private void tabelaFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFuncionariosMouseClicked
         // TODO add your handling code here:
         // Click na tabela
-        jTabbedPane1.setSelectedIndex(0);
+        tabela.setSelectedIndex(0);
 
-        txtcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
-        txtnome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
-        txtrg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
-        txtcpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
-        txtemail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
-        txttelefone.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
-        txtnumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
-        txtcomplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
-        cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
-    }//GEN-LAST:event_tabelaClientesMouseClicked
+        txtcodigo.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 0).toString());
+        txtnome.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 3).toString());
+        txtemail.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 4).toString());
+        
+        txtsenha.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 5).toString());
+        txtcargo.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 6).toString());
+        cbnivelacesso.setSelectedItem(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 7).toString());
+        
+        txttelefone.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 8).toString());
+        txtcelular.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 9).toString());
+        txtcep.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 10).toString());
+        txtendereco.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 11).toString());
+        txtnumero.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 12).toString());
+        txtcomplemento.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 13).toString());
+        txtbairro.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 14).toString());
+        txtcidade.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 15).toString());
+        cbuf.setSelectedItem(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 16).toString());
+    }//GEN-LAST:event_tabelaFuncionariosMouseClicked
 
     private void txtpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpesquisaActionPerformed
         // TODO add your handling code here:
@@ -771,13 +837,13 @@ public class FormFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> lista = dao.buscaClientePorNome(nome);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> lista = dao.buscaFuncionarioPorNome(nome);
 
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Cliente c : lista) {
+        for (Funcionario c : lista) {
 
             dados.addRow(new Object[]{
                 c.getId(),
@@ -785,6 +851,9 @@ public class FormFuncionarios extends javax.swing.JFrame {
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
+                c.getSenha(),
+                c.getCargo(),
+                c.getNivel_acesso(),
                 c.getTelefone(),
                 c.getCelular(),
                 c.getCep(),
@@ -803,10 +872,10 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
         // Buscar cliente por nome
         String nome = txtnome.getText();
-        Cliente obj = new Cliente();
-        ClienteDAO dao = new ClienteDAO();
+        Funcionario obj = new Funcionario();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
-        obj = dao.consultaClientePorNome(nome);
+        obj = dao.consultaFuncionarioPorNome(nome);
 
         if (obj.getNome() != null) {
 
@@ -816,6 +885,11 @@ public class FormFuncionarios extends javax.swing.JFrame {
             txtrg.setText(obj.getRg());
             txtcpf.setText(obj.getCpf());
             txtemail.setText(obj.getEmail());
+            
+            txtsenha.setText(obj.getSenha());
+            txtcargo.setText(obj.getCargo());
+            cbnivelacesso.setSelectedItem(obj.getNivel_acesso());
+            
             txttelefone.setText(obj.getTelefone());
             txtcelular.setText(obj.getCelular());
             txtcep.setText(obj.getCep());
@@ -826,7 +900,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
             txtcidade.setText(obj.getCidade());
             cbuf.setSelectedItem(obj.getUf());
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+            JOptionPane.showMessageDialog(null, "Funcionario não encontrado");
         }
     }//GEN-LAST:event_btnconsultaActionPerformed
 
@@ -835,8 +909,8 @@ public class FormFuncionarios extends javax.swing.JFrame {
 
         //Programacao do keypress
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Cliente obj = new Cliente();
-            ClienteDAO dao = new ClienteDAO();
+            Funcionario obj = new Funcionario();
+            FuncionarioDAO dao = new FuncionarioDAO();
             obj = dao.buscaCep(txtcep.getText());
 
             txtendereco.setText(obj.getEndereco());
@@ -891,6 +965,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
     private javax.swing.JButton btnnovo;
     private javax.swing.JButton btnpesquisar;
     private javax.swing.JButton btnsalvar;
+    private javax.swing.JComboBox<String> cbnivelacesso;
     private javax.swing.JComboBox<String> cbuf;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton2;
@@ -902,6 +977,9 @@ public class FormFuncionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -911,11 +989,12 @@ public class FormFuncionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel painel_consulta_clientes;
+    private javax.swing.JPanel painel_consulta_funcionarios;
     private javax.swing.JPanel painel_dados_pessoais;
-    private javax.swing.JTable tabelaClientes;
+    private javax.swing.JTabbedPane tabela;
+    private javax.swing.JTable tabelaFuncionarios;
     private javax.swing.JTextField txtbairro;
+    private javax.swing.JTextField txtcargo;
     private javax.swing.JFormattedTextField txtcelular;
     private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;
@@ -928,6 +1007,7 @@ public class FormFuncionarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtnumero;
     private javax.swing.JTextField txtpesquisa;
     private javax.swing.JFormattedTextField txtrg;
+    private javax.swing.JPasswordField txtsenha;
     private javax.swing.JFormattedTextField txttelefone;
     // End of variables declaration//GEN-END:variables
 }
