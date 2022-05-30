@@ -7,6 +7,7 @@ package com.sales.view;
 import com.sales.dao.ClienteDAO;
 import com.sales.model.Cliente;
 import com.sales.utils.Utils;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -173,10 +174,14 @@ public class FormClients extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtcep.setText("");
         txtcep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcepActionPerformed(evt);
+            }
+        });
+        txtcep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcepKeyPressed(evt);
             }
         });
 
@@ -231,7 +236,7 @@ public class FormClients extends javax.swing.JFrame {
         jLabel13.setText("UF:");
 
         cbuf.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MG", "SP", "RJ" }));
+        cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbuf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbufActionPerformed(evt);
@@ -824,6 +829,24 @@ public class FormClients extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado");
         }
     }//GEN-LAST:event_btnconsultaActionPerformed
+
+    private void txtcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyPressed
+        // TODO add your handling code here:
+
+        //Programacao do keypress
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Cliente obj = new Cliente();
+            ClienteDAO dao = new ClienteDAO();
+            obj = dao.buscaCep(txtcep.getText());
+
+            txtendereco.setText(obj.getEndereco());
+            txtbairro.setText(obj.getBairro());
+            txtcidade.setText(obj.getCidade());
+            cbuf.setSelectedItem(obj.getUf());
+            System.out.println(obj.getUf());
+
+        }
+    }//GEN-LAST:event_txtcepKeyPressed
 
     /**
      * @param args the command line arguments
