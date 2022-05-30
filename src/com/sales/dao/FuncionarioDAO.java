@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import com.sales.model.Funcionario;
 import com.sales.services.WebServiceCep;
+import com.sales.view.FormLogin;
 import com.sales.view.FormMenu;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -310,7 +311,7 @@ public class FuncionarioDAO {
 
                 // Usuário logou
                 JOptionPane.showMessageDialog(null, "Seja bem vindo ao sistema Sales");
-                
+
                 // Display menu
                 FormMenu menu = new FormMenu();
                 menu.usuariologado = rs.getString("nome");
@@ -319,6 +320,7 @@ public class FuncionarioDAO {
             } else {
                 // Dados incorretos
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
+                new FormLogin().setVisible(true);
             }
 
         } catch (SQLException e) {
